@@ -24,7 +24,21 @@ const data = [
     return {...post}
   }
 
+  const start = Date.now()
+
+  const msToTime = (ms) => {
+    let seconds = ((start - ms) / 1000).toFixed(0);
+    let minutes = ((start - ms) / (1000 * 60)).toFixed(0);
+    let hours = ((start - ms) / (1000 * 60 * 60)).toFixed(0);
+    let days = ((start - ms) / (1000 * 60 * 60 * 24)).toFixed(0);
+    if (seconds < 60) return seconds + " Sec ago";
+    else if (minutes < 60) return minutes + " Min ago";
+    else if (hours < 24) return hours + " Hrs ago";
+    else return days + " Days"
+  }
+
   module.exports = {
     list: list,
     find: find,
+    msToTime: msToTime,
   }
